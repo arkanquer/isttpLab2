@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:latest
+    container_name: game_postgres_db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: GameLibraryDB
+    ports:
+      - "5433:5432"
+
+  app:
+    build: .
+    container_name: game_api_container
+    ports:
+      - "5050:8080"
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=db;Database=GameLibraryDB;Username=user;Password=password
