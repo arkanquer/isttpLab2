@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель керування ігровою бібліотекою</title>
+    <link rel="stylesheet" href="css/style.css?v=1.5">
+</head>
+<body>
+    <div class="container">
+        
+        <div class="panel">
+            <div class="auth-block">
+                <b>Поточний профіль системи:</b>
+                <div id="auth-selector-wrapper" style="display: inline;">
+                    <select id="global-user-select" style="width: 200px; display: inline; margin: 0 10px;"></select>
+                    <button class="btn btn-sm" onclick="loginUser()">Увійти в акаунт</button>
+                </div>
+            </div>
+            <div id="auth-status-wrapper" style="display: none;">
+                <span id="role-badge">---</span>
+                <button class="btn btn-secondary btn-sm" onclick="logoutUser()">Вийти</button>
+            </div>
+        </div>
+
+        <div class="tabs-nav">
+            <button class="tab-btn active" onclick="switchTab('tab-games')">Каталог Ігор</button>
+            <button class="tab-btn" onclick="switchTab('tab-my-library')">Моя Бібліотека</button>
+            <button class="tab-btn" id="nav-genres" onclick="switchTab('tab-genres')">Жанри</button>
+            <button class="tab-btn" id="nav-players" onclick="switchTab('tab-players')">Гравці (Користувачі)</button>
+            <button class="tab-btn" onclick="switchTab('tab-add-review')">Написати відгук</button>
+        </div>
+
+        <div id="tab-games" class="tab-content active">
+            <h2>Глобальний каталог ігор</h2>
+            <div id="game-form-area"></div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Назва гри</th>
+                        <th>Жанр</th>
+                        <th>Відгуки та оцінки геймерів</th>
+                        <th style="width: 200px;">Доступні дії</th>
+                    </tr>
+                </thead>
+                <tbody id="games-table-body"></tbody>
+            </table>
+        </div>
+
+        <div id="tab-my-library" class="tab-content">
+            <h2>Ваша персональна бібліотека</h2>
+            <div id="library-lock-msg" class="status-msg error-msg">
+                Будь ласка, оберіть акаунт у верхній панелі для перегляду.
+            </div>
+            <div id="library-content" style="display: none;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Назва гри</th>
+                        </tr>
+                    </thead>
+                    <tbody id="my-library-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="tab-genres" class="tab-content">
+            <h2>Жанри ігор у базі даних</h2>
+            <div id="genre-form-area"></div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Назва жанру</th>
+                        <th>Опис механік</th>
+                        <th style="width: 120px;">Дії</th>
+                    </tr>
+                </thead>
+                <tbody id="genres-table-body"></tbody>
+            </table>
+        </div>
+
+        <div id="tab-players" class="tab-content">
+            <h2>Користувачі системи</h2>
+            <div id="player-form-area"></div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Нікнейм</th>
+                        <th>Email адреса</th>
+                        <th style="width: 120px;">Дії</th>
+                    </tr>
+                </thead>
+                <tbody id="players-table-body"></tbody>
+            </table>
+        </div>
+
+        <div id="tab-add-review" class="tab-content">
+            <h2>Опублікувати відгук</h2>
+            <div id="review-lock-msg" class="status-msg error-msg">
+                Авторизуйтесь під своїм акаунтом у верхній панелі!
+            </div>
+            <div id="review-form-wrapper" class="panel-form" style="display: none;">
+                <form action="javascript:void(0);" onsubmit="addReview()" class="form-grid">
+                    <div class="form-group">
+                        <label>Автор (Поточна сесія):</label>
+                        <input type="text" id="review-player-mock" class="input-readonly" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Оберіть гру з каталогу</label>
+                        <select id="review-game-select" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Ваша оцінка (від 1 до 5 зірок)</label>
+                        <input type="number" id="review-rating" min="1" max="5" value="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Текст вражень</label>
+                        <textarea id="review-text" required placeholder="Напишіть щось про гру..."></textarea>
+                    </div>
+                    <div id="select-style-reset" class="form-actions">
+                        <button type="submit" class="btn">Надіслати відгук</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="js/app.js?v=1.5"></script>
+</body>
+</html>

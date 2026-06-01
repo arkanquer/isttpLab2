@@ -16,6 +16,10 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+app.UseDefaultFiles(); 
+app.UseStaticFiles(); 
+
+app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 namespace GameLibraryAPI.Models {
     public class GameContext : DbContext {
         public GameContext(DbContextOptions<GameContext> options) : base(options) {
-            Database.EnsureCreated(); // Автоматично створить базу при запуску в Docker
+            Database.EnsureCreated();
         }
 
         public DbSet<Game> Games { get; set; }
